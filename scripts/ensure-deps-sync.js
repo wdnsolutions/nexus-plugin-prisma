@@ -4,8 +4,7 @@ const packageJson = require('../package.json')
 const prismaDeps = [
   ...Object.entries(packageJson.dependencies),
   ...Object.entries(packageJson.devDependencies),
-]
-  .filter(([depName]) => depName.startsWith('@prisma/'))
+].filter(([depName]) => depName.startsWith('@prisma/'))
 
 const validVersionRange = packageJson.peerDependencies['@prisma/client']
 

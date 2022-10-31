@@ -1,15 +1,23 @@
-import { DMMF } from '@prisma/client/runtime'
+import execa from 'execa'
 
-export const getPrismaClientDmmf = (packagePath: string): DMMF.Document => {
-  let dmmf: undefined | DMMF.Document = undefined
+export const getPrismaClientDmmf = (packagePath: string) => {
+  let dmmf: any = undefined
 
   try {
-    dmmf = require(packagePath).dmmf
-  } catch (error) {
-    throw new Error(
-      `Failed to import prisma client package at ${packagePath}. The following error occured while trying:
-        ${error.stack}`
-    )
+    const { stdout } = execa.sync('node', [__dirname + '/generate.js'], {
+      cwd: process.cwd(),
+    })
+    dmmf = JSON.parse(stdout)
+  } catch {}
+
+  if (!dmmf) {
+    try {
+      dmmf = require(packagePath).dmmf
+    } catch (error) {
+      throw new Error(
+        `Failed to import prisma client package at ${packagePath}. The following error occured while trying:`
+      )
+    }
   }
 
   if (!dmmf) {

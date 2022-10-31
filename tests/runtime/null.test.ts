@@ -50,7 +50,7 @@ test('findMany: converts nulls to undefined when fields are not nullable', async
     
     model Post {
       id      String @default(cuid()) @id
-      authors User[] @relation(references: [id])
+      authors User[]
     }
   `
   const { dmmf, schemaArgs } = await getSchemaArgsForCrud(datamodel, 'User', 'findMany')
@@ -90,7 +90,7 @@ test('create: converts nulls to undefined when fields are not nullable', async (
   
   model Post {
     id      String @default(cuid()) @id
-    authors User[] @relation(references: [id])
+    authors User[] 
   }
   `
   const { dmmf, schemaArgs } = await getSchemaArgsForCrud(datamodel, 'User', 'create')
@@ -122,7 +122,7 @@ test('model filtering: converts nulls to undefined when fields are not nullable'
   
   model Post {
     id      String @default(cuid()) @id
-    authors User[] @relation(references: [id])
+    authors User[] 
   }
   `
   const dmmf = await getDmmf(datamodel)
@@ -157,7 +157,7 @@ test('do not convert args that are arrays', async () => {
   
   model Post {
     id      String @default(cuid()) @id
-    authors User[] @relation(references: [id])
+    authors User[] 
   }
   `
   const dmmf = await getDmmf(datamodel)

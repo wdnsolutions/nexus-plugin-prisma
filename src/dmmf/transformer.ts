@@ -52,15 +52,15 @@ const paginationArgNames = ['cursor', 'take', 'skip']
 type TransformConfig = Required<TransformOptions>
 
 function transformSchema(schema: DMMF.Schema, options: TransformConfig): InternalDMMF.Schema {
-  const enumTypes = schema.enumTypes.model ?? []
+  const enumTypes = schema?.enumTypes?.model ?? []
 
   const inputTypes =
-    schema.inputObjectTypes.model?.map((type) =>
+    schema?.inputObjectTypes?.model?.map((type) =>
       transformInputType(type, options.globallyComputedInputs, options.atomicOperations)
     ) ?? []
 
   const outputTypes =
-    schema.outputObjectTypes.model?.map((type) => {
+    schema?.outputObjectTypes.model?.map((type) => {
       return transformOutputType(type, options)
     }) ?? []
 
@@ -169,20 +169,22 @@ function argTypeUnionToArgType(
     // [AnyType]
     filteredArgTypeContexts.find((argTypeCtx) => isInputObjectType(argTypeCtx) && argTypeCtx.isList) ??
     // AnyType
-    filteredArgTypeContexts.find((argTypeCtx) => isInputObjectType(argTypeCtx));
+    filteredArgTypeContexts.find((argTypeCtx) => isInputObjectType(argTypeCtx))
 
   if (result) {
-    return [result, false];
+    return [result, false]
   }
 
-  const jsonResult = filteredArgTypeContexts.find((argTypeCtx) => argTypeCtx.type === 'Json');
+  const jsonResult = filteredArgTypeContexts.find((argTypeCtx) => argTypeCtx.type === 'Json')
   if (jsonResult) {
-    const dbIsNullable = !!filteredArgTypeContexts.find((argTypeCtx) => argTypeCtx.type === 'NullableJsonNullValueInput')
-    return [jsonResult, dbIsNullable];
+    const dbIsNullable = !!filteredArgTypeContexts.find(
+      (argTypeCtx) => argTypeCtx.type === 'NullableJsonNullValueInput'
+    )
+    return [jsonResult, dbIsNullable]
   }
 
   // fallback to the first member of the union
-  return [argTypeContexts[0], false];
+  return [argTypeContexts[0], false]
 
   function isInputObjectType(argTypeCtx: any) {
     return argTypeCtx.location === 'inputObjectTypes'

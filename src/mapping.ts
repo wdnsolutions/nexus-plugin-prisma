@@ -13,13 +13,15 @@ export interface MappedField extends Omit<BaseMappedField, 'field'> {
   field: InternalDMMF.SchemaField
 }
 
-const buildField = (mapping: InternalDMMF.Mapping, operation: OperationName): BaseMappedField | null => {
+const buildField = (mapping: any, operation: any): BaseMappedField | null => {
   if (mapping[operation] === undefined) {
     return null
   }
 
+  const operationName = operation.replaceAll('One', '')
+
   return {
-    operation,
+    operation: operationName,
     field: mapping[operation]!,
     model: mapping.model,
     prismaClientAccessor: lowerFirst(mapping.model),
@@ -29,12 +31,12 @@ const buildField = (mapping: InternalDMMF.Mapping, operation: OperationName): Ba
 const CRUD_MAPPED_FIELDS: Record<string, (m: InternalDMMF.Mapping) => (BaseMappedField | null)[]> = {
   Query: (m) => [buildField(m, 'findUnique'), buildField(m, 'findMany')],
   Mutation: (m) => [
-    buildField(m, 'create'),
-    buildField(m, 'update'),
+    buildField(m, 'createOne'),
+    buildField(m, 'updateOne'),
     buildField(m, 'updateMany'),
-    buildField(m, 'delete'),
+    buildField(m, 'deleteOne'),
     buildField(m, 'deleteMany'),
-    buildField(m, 'upsert'),
+    buildField(m, 'upsertOne'),
   ],
 }
 

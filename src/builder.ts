@@ -658,10 +658,9 @@ export class SchemaBuilder {
       const orderByTypeNamePreviewFeature = `${field.outputType.type}OrderByWithRelationInput`
       const orderByArg = field.args.find(
         (arg) =>
-          (arg.inputType.type === orderByTypeName ||
-            arg.inputType.type === orderByTypeNamePreviewFeature) &&
+          (arg.inputType.type === orderByTypeName || arg.inputType.type === orderByTypeNamePreviewFeature) &&
           arg.name === 'orderBy'
-      );
+      )
 
       if (!orderByArg) {
         throw new Error(`Could not find ordering argument for ${typeName}.${field.name}`)

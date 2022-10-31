@@ -1,5 +1,6 @@
+//@ts-ignore
 import { Migrate } from '@prisma/migrate'
-import { getGenerator } from '@prisma/sdk'
+import { getGenerator } from '@prisma/internals'
 import endent from 'endent'
 import * as fs from 'fs-jetpack'
 import getPort from 'get-port'
@@ -113,6 +114,7 @@ async function generateClientFromDatamodel(metadata: Metadata) {
     schemaPath: metadata.schemaPath,
     printDownloadProgress: false,
     baseDir: metadata.tmpDir,
+    dataProxy: false,
   })
 
   await generator.generate()

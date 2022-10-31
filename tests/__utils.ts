@@ -1,5 +1,5 @@
 const PrismaClientGenerator = require('@prisma/client/generator-build')
-import * as SDK from '@prisma/sdk'
+import * as SDK from '@prisma/internals'
 import * as GQL from 'graphql'
 import * as Nexus from 'nexus'
 import stripAnsi from 'strip-ansi'
@@ -23,8 +23,7 @@ export async function getDmmf(datamodel: string, options?: TransformOptions) {
   const originalDmmf = await SDK.getDMMF({
     datamodel,
   })
-  const clientDmmf = PrismaClientGenerator.externalToInternalDmmf(originalDmmf)
-  return new DmmfDocument(transform(clientDmmf, options))
+  return new DmmfDocument(transform(originalDmmf, options))
 }
 
 export async function getPinnedDmmfFromSchemaPath(datamodelPath: string) {

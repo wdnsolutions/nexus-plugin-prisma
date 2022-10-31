@@ -14,7 +14,7 @@ it('supports nested query with one id field', async () => {
   model Child {
     idField Int    @id
     parent      Parent @relation(fields: [parentId], references: [idField])
-    parentId Int
+    parentId     Int @unique
   }
 `
 
@@ -84,6 +84,7 @@ it('supports nested query with compound ids', async () => {
     parentId1 Int
     parentId2 Int
     @@id([idField1, idField2])
+    @@unique([parentId1, parentId2])
   }
 `
 
@@ -162,7 +163,7 @@ it('supports nested query without id but one unique', async () => {
   model Child {
     uniqueField Int    @unique
     parent      Parent @relation(fields: [parentId], references: [uniqueField])
-    parentId    Int
+    parentId     Int @unique
   }
 `
 
@@ -228,7 +229,7 @@ it('supports nested query without id but multiple uniques', async () => {
     uniqueField1 Int    @unique
     uniqueField2 Int    @unique
     parent       Parent @relation(fields: [parentId], references: uniqueField1)
-    parentId     Int
+    parentId     Int @unique
   }
 `
 
@@ -304,6 +305,7 @@ it('supports nested query without id but compound uniques', async () => {
     parentUnique1 Int
     parentUnique2 Int
     @@unique([uniqueField1, uniqueField2])
+    @@unique([parentUnique1, parentUnique2])
   }
 `
 
