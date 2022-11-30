@@ -5,7 +5,7 @@
 
 ![trunk](https://github.com/kenchi/nexus-plugin-prisma/workflows/trunk/badge.svg)
 
-**Latest version of Prisma supported: 4.6.1**
+**Latest version of Prisma supported: 4.7.0**
 
 **Note:** A [replacement](https://github.com/prisma/nexus-prisma/) for this library is under development and available in early preview. More details in [#1039](https://github.com/graphql-nexus/nexus-plugin-prisma/issues/1039). Since the Prisma team is no longer keeping this library up to date with new Prisma versions, we have forked it.
 
