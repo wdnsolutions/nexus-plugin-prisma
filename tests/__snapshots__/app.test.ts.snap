@@ -683,9 +683,7 @@ Object {
             "name": "posts",
             "relationFromFields": Array [],
             "relationName": "PostToUser",
-            "relationToFields": Array [
-              "id",
-            ],
+            "relationToFields": Array [],
             "type": "Post",
           },
           Object {
@@ -889,9 +887,7 @@ Object {
             "name": "authors",
             "relationFromFields": Array [],
             "relationName": "PostToUser",
-            "relationToFields": Array [
-              "id",
-            ],
+            "relationToFields": Array [],
             "type": "User",
           },
           Object {
