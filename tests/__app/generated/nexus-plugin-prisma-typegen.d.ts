@@ -24,44 +24,44 @@ interface PrismaModels {
 interface NexusPrismaInputs {
   Query: {
     bubbles: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'members' | 'private'
-      ordering: 'id' | 'createdAt' | 'members' | 'private'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'createdAt' | 'private' | 'members'
+      ordering: 'id' | 'createdAt' | 'private' | 'members'
     }
     users: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'posts' | 'firstName' | 'lastName' | 'location' | 'Bubble' | 'bubbleId' | 'locationId'
-      ordering: 'id' | 'posts' | 'firstName' | 'lastName' | 'location' | 'Bubble' | 'bubbleId' | 'locationId'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'firstName' | 'lastName' | 'bubbleId' | 'locationId' | 'posts' | 'location' | 'Bubble'
+      ordering: 'id' | 'firstName' | 'lastName' | 'bubbleId' | 'locationId' | 'posts' | 'location' | 'Bubble'
     }
     locations: {
       filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'country' | 'city' | 'User'
       ordering: 'id' | 'country' | 'city' | 'User'
     }
     posts: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'authors' | 'rating' | 'likes' | 'status'
-      ordering: 'id' | 'authors' | 'rating' | 'likes' | 'status'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'rating' | 'likes' | 'status' | 'authors'
+      ordering: 'id' | 'rating' | 'likes' | 'status' | 'authors'
     }
   },
   Bubble: {
     members: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'posts' | 'firstName' | 'lastName' | 'location' | 'Bubble' | 'bubbleId' | 'locationId'
-      ordering: 'id' | 'posts' | 'firstName' | 'lastName' | 'location' | 'Bubble' | 'bubbleId' | 'locationId'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'firstName' | 'lastName' | 'bubbleId' | 'locationId' | 'posts' | 'location' | 'Bubble'
+      ordering: 'id' | 'firstName' | 'lastName' | 'bubbleId' | 'locationId' | 'posts' | 'location' | 'Bubble'
     }
   }
   User: {
     posts: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'authors' | 'rating' | 'likes' | 'status'
-      ordering: 'id' | 'authors' | 'rating' | 'likes' | 'status'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'rating' | 'likes' | 'status' | 'authors'
+      ordering: 'id' | 'rating' | 'likes' | 'status' | 'authors'
     }
   }
   Location: {
     User: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'posts' | 'firstName' | 'lastName' | 'location' | 'Bubble' | 'bubbleId' | 'locationId'
-      ordering: 'id' | 'posts' | 'firstName' | 'lastName' | 'location' | 'Bubble' | 'bubbleId' | 'locationId'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'firstName' | 'lastName' | 'bubbleId' | 'locationId' | 'posts' | 'location' | 'Bubble'
+      ordering: 'id' | 'firstName' | 'lastName' | 'bubbleId' | 'locationId' | 'posts' | 'location' | 'Bubble'
     }
   }
   Post: {
     authors: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'posts' | 'firstName' | 'lastName' | 'location' | 'Bubble' | 'bubbleId' | 'locationId'
-      ordering: 'id' | 'posts' | 'firstName' | 'lastName' | 'location' | 'Bubble' | 'bubbleId' | 'locationId'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'firstName' | 'lastName' | 'bubbleId' | 'locationId' | 'posts' | 'location' | 'Bubble'
+      ordering: 'id' | 'firstName' | 'lastName' | 'bubbleId' | 'locationId' | 'posts' | 'location' | 'Bubble'
     }
   }
 }
