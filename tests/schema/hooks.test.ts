@@ -272,12 +272,11 @@ it('in dev stage, warns if a graphql typename does not map to a prisma name but 
 
     type Query {
       ok: Boolean!
-    }
-    "
+    }"
   `)
   expect($output).toMatchInlineSnapshot(`
     "
-    Warning: Your GraphQL \`GraphQLTypeNameNotMappingToAPrismaModelName\` object definition is attempting to expose some Prisma model fields named \`\\"id\\", \\"name\\", \\"age\\"\`, but there is no such Prisma model called \`GraphQLTypeNameNotMappingToAPrismaModelName\`
+    Warning: Your GraphQL \`GraphQLTypeNameNotMappingToAPrismaModelName\` object definition is attempting to expose some Prisma model fields named \`"id", "name", "age"\`, but there is no such Prisma model called \`GraphQLTypeNameNotMappingToAPrismaModelName\`
     Warning: If this is not intentional, make sure you don't have a typo in your GraphQL type name \`GraphQLTypeNameNotMappingToAPrismaModelName\`
     Warning: If this is intentional, pass the mapped Prisma model name as parameter like so \`t.model('<PrismaModelName>').<FieldName>()\`
     "
@@ -310,7 +309,7 @@ it('in prod stage, throw error if a graphql typename does not map to a prisma na
     expect(schema).toMatchInlineSnapshot()
   } catch (e) {
     expect(e.message).toMatchInlineSnapshot(`
-      "Your GraphQL \`GraphQLTypeNameNotMappingToAPrismaModelName\` object definition is attempting to expose some Prisma model fields named \`\\"id\\", \\"name\\", \\"age\\"\`, but there is no such Prisma model called \`GraphQLTypeNameNotMappingToAPrismaModelName\`
+      "Your GraphQL \`GraphQLTypeNameNotMappingToAPrismaModelName\` object definition is attempting to expose some Prisma model fields named \`"id", "name", "age"\`, but there is no such Prisma model called \`GraphQLTypeNameNotMappingToAPrismaModelName\`
       If this is not intentional, make sure you don't have a typo in your GraphQL type name \`GraphQLTypeNameNotMappingToAPrismaModelName\`
       If this is intentional, pass the mapped Prisma model name as parameter like so \`t.model('<PrismaModelName>').<FieldName>()\`"
     `)

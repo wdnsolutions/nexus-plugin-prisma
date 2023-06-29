@@ -1,6 +1,6 @@
 import execa from 'execa'
 import * as FS from 'fs-jetpack'
-import * as nexusBuilder from 'nexus/dist/builder'
+import { generateSchema } from 'nexus/dist/makeSchema'
 import * as Path from 'path'
 import { getImportPathRelativeToOutput } from '../src/utils'
 import * as types from './__app/main'
@@ -60,7 +60,7 @@ it('integrates together', async () => {
   process.env.NODE_ENV = 'development'
 
   await mockConsoleLog(async () => {
-    await nexusBuilder.generateSchema({
+    await generateSchema({
       types,
       plugins: [nexusPrisma],
       shouldGenerateArtifacts: true,
@@ -77,12 +77,13 @@ it('integrates together', async () => {
   //
   const graphqlSchema = fs.read('generated/schema.graphql')
   const nexusPrismaTypeGen = fs.read('generated/nexus-plugin-prisma-typegen.d.ts')
+  const prismaClient = require('@prisma/client')
 
   expect(removeNexusHeader(graphqlSchema)).toMatchSnapshot('graphql schema')
   expect(nexusPrismaTypeGen).toMatchSnapshot('nexus prisma typegen')
 
   // For convenience
-  expect(require('@prisma/client').dmmf).toMatchSnapshot('prisma client dmmf')
+  expect(prismaClient.dmmf || prismaClient.Prisma.dmmf).toMatchSnapshot('prisma client dmmf')
 
   // Assert the app type checks. In effect this is testing that our
   // typegen works.

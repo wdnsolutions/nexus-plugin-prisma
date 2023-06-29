@@ -47,11 +47,11 @@ export interface NexusGenInputs {
   }
   BubbleWhereInput: { // input type
     AND?: NexusGenInputs['BubbleWhereInput'][] | null; // [BubbleWhereInput!]
+    NOT?: NexusGenInputs['BubbleWhereInput'][] | null; // [BubbleWhereInput!]
+    OR?: NexusGenInputs['BubbleWhereInput'][] | null; // [BubbleWhereInput!]
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     members?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
-    NOT?: NexusGenInputs['BubbleWhereInput'][] | null; // [BubbleWhereInput!]
-    OR?: NexusGenInputs['BubbleWhereInput'][] | null; // [BubbleWhereInput!]
     private?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
   }
   BubbleWhereUniqueInput: { // input type
@@ -125,12 +125,12 @@ export interface NexusGenInputs {
   }
   LocationWhereInput: { // input type
     AND?: NexusGenInputs['LocationWhereInput'][] | null; // [LocationWhereInput!]
-    city?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    country?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     NOT?: NexusGenInputs['LocationWhereInput'][] | null; // [LocationWhereInput!]
     OR?: NexusGenInputs['LocationWhereInput'][] | null; // [LocationWhereInput!]
     User?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
+    city?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    country?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
   LocationWhereUniqueInput: { // input type
     id?: number | null; // Int
@@ -226,11 +226,11 @@ export interface NexusGenInputs {
   }
   PostWhereInput: { // input type
     AND?: NexusGenInputs['PostWhereInput'][] | null; // [PostWhereInput!]
+    NOT?: NexusGenInputs['PostWhereInput'][] | null; // [PostWhereInput!]
+    OR?: NexusGenInputs['PostWhereInput'][] | null; // [PostWhereInput!]
     authors?: NexusGenInputs['UserListRelationFilter'] | null; // UserListRelationFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     likes?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    NOT?: NexusGenInputs['PostWhereInput'][] | null; // [PostWhereInput!]
-    OR?: NexusGenInputs['PostWhereInput'][] | null; // [PostWhereInput!]
     rating?: NexusGenInputs['FloatFilter'] | null; // FloatFilter
     status?: NexusGenInputs['EnumPostStatusFilter'] | null; // EnumPostStatusFilter
   }
@@ -292,14 +292,14 @@ export interface NexusGenInputs {
   UserWhereInput: { // input type
     AND?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     Bubble?: NexusGenInputs['BubbleWhereInput'] | null; // BubbleWhereInput
+    NOT?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
+    OR?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     bubbleId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     firstName?: NexusGenInputs['StringFilter'] | null; // StringFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     lastName?: NexusGenInputs['StringFilter'] | null; // StringFilter
     location?: NexusGenInputs['LocationWhereInput'] | null; // LocationWhereInput
     locationId?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    NOT?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
-    OR?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     posts?: NexusGenInputs['PostListRelationFilter'] | null; // PostListRelationFilter
   }
   UserWhereUniqueInput: { // input type
@@ -526,6 +526,8 @@ export interface NexusGenTypes {
 
 declare global {
   interface NexusGenPluginTypeConfig<TypeName extends string> {
+  }
+  interface NexusGenPluginInputTypeConfig<TypeName extends string> {
   }
   interface NexusGenPluginFieldConfig<TypeName extends string, FieldName extends string> {
   }

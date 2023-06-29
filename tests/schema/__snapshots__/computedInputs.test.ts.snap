@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`removes global computedInputs from all input types: globallyComputedInputs 1`] = `
-Object {
+{
   "schema": "type Query {
   user(where: UserWhereUniqueInput!): User
 }
@@ -70,8 +70,7 @@ input UserCreateWithoutNestedInput {
 input UserCreateOrConnectWithoutNestedInput {
   where: UserWhereUniqueInput!
   create: UserCreateWithoutNestedInput!
-}
-",
+}",
   "typegen": "import * as Typegen from '@mercurialweb/nexus-plugin-prisma/typegen'
 import * as Prisma from '@prisma/client';
 
@@ -182,7 +181,7 @@ declare global {
 `;
 
 exports[`removes resolver-level computedInputs from the corresponding input type: locallyComputedInputs 1`] = `
-Object {
+{
   "schema": "type Query {
   user(where: UserWhereUniqueInput!): User
 }
@@ -203,8 +202,7 @@ input UserWhereUniqueInput {
 
 input UserCreateInput {
   name: String!
-}
-",
+}",
   "typegen": "import * as Typegen from '@mercurialweb/nexus-plugin-prisma/typegen'
 import * as Prisma from '@prisma/client';
 

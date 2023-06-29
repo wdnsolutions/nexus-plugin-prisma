@@ -17,8 +17,7 @@ input PostWhereUniqueInput {
 
 type Query {
   ok: Boolean!
-}
-"
+}"
 `;
 
 exports[`support prisma pagination: typegen 1`] = `
@@ -49,14 +48,14 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'posts'
     }
     posts: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'title' | 'author' | 'authorId'
-      ordering: 'id' | 'title' | 'author' | 'authorId'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'title' | 'authorId' | 'author'
+      ordering: 'id' | 'title' | 'authorId' | 'author'
     }
   },
   User: {
     posts: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'title' | 'author' | 'authorId'
-      ordering: 'id' | 'title' | 'author' | 'authorId'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'title' | 'authorId' | 'author'
+      ordering: 'id' | 'title' | 'authorId' | 'author'
     }
   }
   Post: {
@@ -143,8 +142,7 @@ input PostWhereUniqueInput {
 
 type Query {
   ok: Boolean!
-}
-"
+}"
 `;
 
 exports[`support relay pagination (default): typegen 1`] = `
@@ -176,14 +174,14 @@ interface NexusPrismaInputs {
       ordering: 'id' | 'posts'
     }
     posts: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'title' | 'author' | 'authorId'
-      ordering: 'id' | 'title' | 'author' | 'authorId'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'title' | 'authorId' | 'author'
+      ordering: 'id' | 'title' | 'authorId' | 'author'
     }
   },
   User: {
     posts: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'title' | 'author' | 'authorId'
-      ordering: 'id' | 'title' | 'author' | 'authorId'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'title' | 'authorId' | 'author'
+      ordering: 'id' | 'title' | 'authorId' | 'author'
     }
   }
   Post: {
