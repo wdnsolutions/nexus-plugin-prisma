@@ -1,4 +1,4 @@
-import { DMMF } from '@prisma/client/runtime'
+import { DMMF } from '@prisma/generator-helper'
 import { inspect } from 'util'
 import { paginationStrategies, PaginationStrategy } from '../pagination'
 import { GlobalComputedInputs, GlobalMutationResolverParams, LocalComputedInputs } from '../utils'
