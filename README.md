@@ -3,7 +3,7 @@
   <h1 align="center">@mercurialweb/nexus-plugin-prisma</h1>
 </p>
 
-**Latest version of Prisma supported: 5.1.1**
+**Latest version of Prisma supported: 5.2.0**
 
 **Note:** Since the Prisma team is no longer keeping this library up to date with new Prisma versions, we have forked it.
 
