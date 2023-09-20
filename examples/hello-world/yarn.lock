@@ -986,8 +986,8 @@ get-stdin@^4.0.1:
   integrity sha1-uWjGsKBDhDJJAui/Gl3zJXmkUP4=
 
 glob-parent@~5.1.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.2.0.tgz#b6c1ef417c4e5663ea498f1c45afac6916bbc229"
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.3.1.tgz#b6c1ef417c4e5663ea498f1c45afac6916bbc229"
   integrity sha512-FnI+VGOpnlGHWZxthPGR+QhR78fuiK0sNLkHQv+bL9fQi57lNNdquIbna/WrfROrolq8GK5Ek6BiMwqL/voRYQ==
   dependencies:
     is-glob "^4.0.1"
@@ -1270,8 +1270,8 @@ loud-rejection@^1.0.0:
     signal-exit "^3.0.0"
 
 lru-cache@^5.0.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-5.2.0.tgz#1da27e6710271947695daf6848e847f01d84b920"
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-5.3.1.tgz#1da27e6710271947695daf6848e847f01d84b920"
   integrity sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==
   dependencies:
     yallist "^3.0.2"
@@ -1800,7 +1800,7 @@ subscriptions-transport-ws@^0.9.11, subscriptions-transport-ws@^0.9.16:
     eventemitter3 "^3.1.0"
     iterall "^1.2.1"
     symbol-observable "^1.0.4"
-    ws "^5.2.0"
+    ws "^5.3.1"
 
 symbol-observable@^1.0.4:
   version "1.2.0"
@@ -1951,7 +1951,7 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
-ws@^5.2.0:
+ws@^5.3.1:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/ws/-/ws-5.2.2.tgz#dffef14866b8e8dc9133582514d1befaf96e980f"
   integrity sha512-jaHFD6PFv6UgoIVda6qZllptQsMlDEJkTQcybzzXDYM1XO9Y8em691FGMPmM46WGyLU4z9KMgQN+qrux/nhlHA==
