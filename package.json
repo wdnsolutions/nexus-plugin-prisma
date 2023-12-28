@@ -43,7 +43,8 @@
     "fs-jetpack": "5.1.0",
     "lodash": "4.17.21",
     "pluralize": "8.0.0",
-    "semver": "7.5.2"
+    "semver": "7.5.2",
+    "execa": "^5.1.1"
   },
   "devDependencies": {
     "@prisma-labs/prettier-config": "0.1.0",
@@ -58,7 +59,6 @@
     "@types/prettier": "2.7.3",
     "@types/semver": "7.5.0",
     "cash-rm": "0.2.0",
-    "execa": "^5.1.1",
     "get-port": "^5.1.1",
     "graphql": "16.7.1",
     "graphql-request": "6.1.0",
