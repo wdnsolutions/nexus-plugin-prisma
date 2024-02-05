@@ -29,14 +29,14 @@ export function transform(document: DMMF.Document, options?: TransformOptions): 
   const result = {
     datamodel: transformDatamodel(document.datamodel),
     schema: transformSchema(document.schema, addDefaultOptions(options)),
-    operations: document.mappings.modelOperations,
+    operations: document.mappings.modelOperations as any,
   }
   return result
 }
 
 function transformDatamodel(datamodel: DMMF.Datamodel): InternalDMMF.Datamodel {
   return {
-    enums: datamodel.enums,
+    enums: datamodel.enums as any,
     models: datamodel.models.map((model) => ({
       ...model,
       fields: model.fields.map((field) => ({
@@ -52,7 +52,7 @@ const paginationArgNames = ['cursor', 'take', 'skip']
 type TransformConfig = Required<TransformOptions>
 
 function transformSchema(schema: DMMF.Schema, options: TransformConfig): InternalDMMF.Schema {
-  const enumTypes = schema?.enumTypes?.model ?? []
+  const enumTypes: any = schema?.enumTypes?.model ?? []
 
   const inputTypes =
     schema?.inputObjectTypes?.model?.map((type) =>
@@ -124,7 +124,7 @@ function transformOutputType(type: DMMF.OutputType, options: TransformConfig) {
  * support union types on args, but Prisma Client does.
  */
 function transformArg(arg: DMMF.SchemaArg, atomicOperations: boolean): InternalDMMF.SchemaArg {
-  const [inputType, forceNullable] = argTypeUnionToArgType(arg.inputTypes, atomicOperations)
+  const [inputType, forceNullable] = argTypeUnionToArgType(arg.inputTypes as any, atomicOperations)
 
   return {
     name: arg.name,
