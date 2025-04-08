@@ -11,6 +11,47 @@ This plugin integrates [Prisma](https://www.prisma.io/) into [Nexus](https://nex
 
 You can find the [documentation on the Nexus website](https://nexusjs.org/docs/plugins/prisma/overview).
 
+## New Features
+
+### Automatic Filtering for Relations
+
+By default, all relational fields now include a `where` parameter allowing you to filter related records, if the underlying Prisma model supports filtering. This makes it easy to query only specific related items without additional configuration.
+
+For example, with a User model related to Posts:
+
+```ts
+// User type with related Posts
+objectType({
+  name: 'User',
+  definition(t) {
+    t.model.id()
+    t.model.name()
+    t.model.posts() // automatically includes where parameter for filtering
+  },
+})
+```
+
+This allows GraphQL queries like:
+
+```graphql
+{
+  user(id: 1) {
+    posts(where: { title: { contains: "Nexus" } }) {
+      id
+      title
+    }
+  }
+}
+```
+
+You can disable this behavior by explicitly setting `filtering: false` when defining the field:
+
+```ts
+t.model.posts({ filtering: false })
+```
+
+Note: If a relation doesn't have filtering capabilities in the generated Prisma client, the filtering parameter will be silently omitted rather than causing an error.
+
 ## Installation
 
 ```
