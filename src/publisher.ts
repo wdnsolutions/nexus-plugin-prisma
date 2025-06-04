@@ -141,8 +141,6 @@ export class Publisher {
       name: inputType.name,
       definition: (t) => {
         inputType.fields.forEach((field) => {
-          // TODO: Do not filter JsonFilter once Prisma implements them
-          // https://github.com/prisma/prisma/issues/2563
           if (['JsonFilter', 'NullableJsonFilter'].includes(field.inputType.type)) {
             t.field(field.name, {
               type: "JsonFilter",
