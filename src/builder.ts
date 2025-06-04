@@ -590,11 +590,18 @@ export class SchemaBuilder {
     )
   }
 
+  filterOutUnusedArgs(args: (InternalDMMF.SchemaArg)[]): InternalDMMF.SchemaArg[] {
+    return args.filter((arg) => {
+      /* Filter out RelationLoadStrategy used for the prisma preview feature "relationJoins" */
+      return !["RelationLoadStrategy"].includes(arg.inputType.type)
+    })
+  }
+
   determineArgs(config: FieldConfigData): CustomInputArg[] {
     if (config.typeName === 'Mutation') {
       return this.argsFromMutationField(config)
     } else if (config.operation === 'findUnique') {
-      return config.field.args.map((arg) => {
+      return this.filterOutUnusedArgs(config.field.args).map((arg) => {
         const type = this.dmmf.getInputType(arg.inputType.type);
         if (type.name.endsWith("WhereUniqueInput")) {
           type.fields = type.fields.map((field) => {
@@ -615,7 +622,7 @@ export class SchemaBuilder {
   }
 
   argsFromMutationField({ publisherConfig, field }: FieldConfigData): CustomInputArg[] {
-    return field.args.map((arg) => {
+    return this.filterOutUnusedArgs(field.args).map((arg) => {
       const prismaClientInputType = this.dmmf.getInputType(arg.inputType.type)
       /*
       Since globallyComputedInputs were already filtered during schema transformation,

@@ -1,6 +1,6 @@
 {
   "name": "@wdnsolutions/nexus-plugin-prisma",
-  "version": "6.5.2",
+  "version": "6.5.3",
   "repository": "git@github.com:wdnsolutions/nexus-plugin-prisma.git",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
