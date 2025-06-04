@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://i.imgur.com/8qvElTM.png" width="300" align="center" />
-  <h1 align="center">@mercurialweb/nexus-plugin-prisma</h1>
+  <h1 align="center">@wdnsolutions/nexus-plugin-prisma</h1>
 </p>
 
 \*_Latest version of Prisma supported: 6.5.0_
@@ -55,7 +55,7 @@ Note: If a relation doesn't have filtering capabilities in the generated Prisma 
 ## Installation
 
 ```
-npm install @mercurialweb/nexus-plugin-prisma
+npm install @wdnsolutions/nexus-plugin-prisma
 # OR
-yarn add @mercurialweb/nexus-plugin-prisma
+yarn add @wdnsolutions/nexus-plugin-prisma
 ```

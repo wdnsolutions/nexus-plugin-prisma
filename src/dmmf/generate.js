@@ -1,6 +1,10 @@
 const SDK = require('@prisma/internals')
-const path = require('path')
+const resolve = require('resolve')
+
+const datamodelPath = resolve.sync('.prisma/client/schema.prisma', {
+  basedir: process.cwd(),
+})
 
 SDK.getDMMF({
-  datamodelPath: path.join(process.cwd(), '/node_modules/.prisma/client/schema.prisma'),
+  datamodelPath,
 }).then((dmmf) => console.log(JSON.stringify(dmmf)))

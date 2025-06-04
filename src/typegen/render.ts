@@ -52,7 +52,7 @@ export function render(params: {
   paginationStrategy: PaginationStrategy
 }) {
   return `\
-import * as Typegen from '${params.nexusPrismaImportId ?? '@mercurialweb/nexus-plugin-prisma/typegen'}'
+import * as Typegen from '${params.nexusPrismaImportId ?? '@wdnsolutions/nexus-plugin-prisma/typegen'}'
 import * as Prisma from '${params.prismaClientImportId}';
 
 // Pagination type
@@ -138,12 +138,12 @@ ${renderNexusPrismaType(queriesByType)}
 ${renderNexusPrismaType(mutationsByType)}
   },
 ${Object.entries(fieldsByType)
-  .map(
-    ([modelName, fields]) => `  ${modelName}: {
+      .map(
+        ([modelName, fields]) => `  ${modelName}: {
 ${renderNexusPrismaType(fields)}
   }`
-  )
-  .join('\n')}
+      )
+      .join('\n')}
 }`
 }
 
@@ -208,13 +208,13 @@ function renderNexusPrismaInputs(dmmf: DmmfDocument) {
     }[]
   ): string => `\
 ${input
-  .map(
-    (f) => `    ${f.fieldName}: {
+      .map(
+        (f) => `    ${f.fieldName}: {
       filtering: ${f.filtering.fields.map((f) => `'${f.name}'`).join(' | ')}
       ordering: ${f.ordering.fields.map((f) => `'${f.name}'`).join(' | ')}
     }`
-  )
-  .join('\n')}`
+      )
+      .join('\n')}`
 
   return `\
 interface NexusPrismaInputs {
@@ -222,12 +222,12 @@ interface NexusPrismaInputs {
 ${renderNexusPrismaInput(queriesFields)}
   },
 ${Object.entries(fieldsByType)
-  .map(
-    ([modelName, fields]) => `  ${modelName}: {
+      .map(
+        ([modelName, fields]) => `  ${modelName}: {
 ${renderNexusPrismaInput(fields)}
   }`
-  )
-  .join('\n')}
+      )
+      .join('\n')}
 }`
 }
 

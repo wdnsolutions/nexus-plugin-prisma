@@ -11,7 +11,7 @@ export class Publisher {
     public dmmf: DmmfDocument,
     public nexusBuilder: Nexus.PluginBuilderLens,
     public scalars: Record<string, GraphQLScalarType>
-  ) {}
+  ) { }
 
   inputType(
     customArg: CustomInputArg
@@ -144,6 +144,12 @@ export class Publisher {
           // TODO: Do not filter JsonFilter once Prisma implements them
           // https://github.com/prisma/prisma/issues/2563
           if (['JsonFilter', 'NullableJsonFilter'].includes(field.inputType.type)) {
+            t.field(field.name, {
+              type: "JsonFilter",
+              /* @ts-ignore */
+              required: field.inputType.isRequired,
+            })
+
             return
           }
 

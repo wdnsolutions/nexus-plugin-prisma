@@ -1,4 +1,4 @@
-import { nexusPrisma } from '@mercurialweb/nexus-plugin-prisma'
+import { nexusPrisma } from '@wdnsolutions/nexus-plugin-prisma'
 import * as NexusSchema from 'nexus'
 import * as path from 'path'
 import * as types from './types'

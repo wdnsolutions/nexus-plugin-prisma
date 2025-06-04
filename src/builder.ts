@@ -57,7 +57,7 @@ type WithRequiredKeys<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>
 type ResolvedFieldPublisherConfig = Omit<
   WithRequiredKeys<FieldPublisherConfig, 'alias' | 'type'>,
   'computedInputs'
-  // Internally rename the arg passed to a resolver as 'computedInputs' to clarify scope
+// Internally rename the arg passed to a resolver as 'computedInputs' to clarify scope
 > & { locallyComputedInputs: LocalComputedInputs<any> }
 
 type FieldPublisher = (opts?: FieldPublisherConfig) => PublisherMethods // Fluent API
@@ -162,7 +162,7 @@ export interface InternalOptions extends Options {
   onUnknownPrismaModelName?: OnUnknownPrismaModelName // Framework option
 }
 
-export interface InternalPublicOptions extends Omit<InternalOptions, 'nexusBuilder'> {}
+export interface InternalPublicOptions extends Omit<InternalOptions, 'nexusBuilder'> { }
 
 export function build(options: InternalOptions) {
   const builder = new SchemaBuilder(options)
@@ -201,8 +201,8 @@ const shouldGenerateArtifacts =
   process.env.NEXUS_SHOULD_GENERATE_ARTIFACTS === 'true'
     ? true
     : process.env.NEXUS_SHOULD_GENERATE_ARTIFACTS === 'false'
-    ? false
-    : Boolean(!process.env.NODE_ENV || process.env.NODE_ENV === 'development')
+      ? false
+      : Boolean(!process.env.NODE_ENV || process.env.NODE_ENV === 'development')
 
 const defaultOptions = {
   shouldGenerateArtifacts,
@@ -388,7 +388,7 @@ export class SchemaBuilder {
           {},
           {
             get() {
-              return () => {}
+              return () => { }
             },
           }
         )
@@ -497,30 +497,29 @@ export class SchemaBuilder {
         const originalResolve: GraphQLFieldResolver<any, any, any> | undefined =
           field.outputType.kind === 'object'
             ? (root, args, ctx) => {
-                const missingIdentifiers = Constraints.findMissingUniqueIdentifiers(root, uniqueIdentifiers)
+              const missingIdentifiers = Constraints.findMissingUniqueIdentifiers(root, uniqueIdentifiers)
 
-                if (missingIdentifiers !== null) {
-                  throw new Error(
-                    `Resolver ${typeName}.${
-                      publisherConfig.alias
-                    } is missing the following unique identifiers: ${missingIdentifiers.join(', ')}`
-                  )
-                }
-
-                const prismaClient = this.getPrismaClient(ctx)
-
-                args = transformNullsToUndefined(args, schemaArgsIndex, this.dmmf)
-                args = this.paginationStrategy.resolve(args)
-
-                return prismaClient[lowerFirst(mapping.model)]
-                  .findUnique({
-                    where: Constraints.buildWhereUniqueInput(root, uniqueIdentifiers),
-                  })
-                  [field.name](args)
+              if (missingIdentifiers !== null) {
+                throw new Error(
+                  `Resolver ${typeName}.${publisherConfig.alias
+                  } is missing the following unique identifiers: ${missingIdentifiers.join(', ')}`
+                )
               }
+
+              const prismaClient = this.getPrismaClient(ctx)
+
+              args = transformNullsToUndefined(args, schemaArgsIndex, this.dmmf)
+              args = this.paginationStrategy.resolve(args)
+
+              return prismaClient[lowerFirst(mapping.model)]
+                .findUnique({
+                  where: Constraints.buildWhereUniqueInput(root, uniqueIdentifiers),
+                })
+              [field.name](args)
+            }
             : publisherConfig.alias != field.name
-            ? (root) => root[field.name]
-            : undefined
+              ? (root) => root[field.name]
+              : undefined
 
         const fieldConfig = this.buildFieldConfig({
           field,
@@ -528,8 +527,8 @@ export class SchemaBuilder {
           typeName,
           resolve: givenConfig?.resolve
             ? (root, args, ctx, info) => {
-                return givenConfig.resolve!(root, args, ctx, info, originalResolve ?? defaultFieldResolver)
-              }
+              return givenConfig.resolve!(root, args, ctx, info, originalResolve ?? defaultFieldResolver)
+            }
             : originalResolve,
         })
 
@@ -595,10 +594,21 @@ export class SchemaBuilder {
     if (config.typeName === 'Mutation') {
       return this.argsFromMutationField(config)
     } else if (config.operation === 'findUnique') {
-      return config.field.args.map((arg) => ({
-        arg,
-        type: this.dmmf.getInputType(arg.inputType.type),
-      }))
+      return config.field.args.map((arg) => {
+        const type = this.dmmf.getInputType(arg.inputType.type);
+        if (type.name.endsWith("WhereUniqueInput")) {
+          type.fields = type.fields.map((field) => {
+            if (field.name == "id") {
+              field.inputType.isRequired = true
+            }
+            return field
+          })
+        }
+        return {
+          arg,
+          type,
+        }
+      });
     } else {
       return this.argsFromQueryOrModelField(config)
     }
@@ -617,8 +627,8 @@ export class SchemaBuilder {
           ...prismaClientInputType,
           fields: publisherConfig.locallyComputedInputs
             ? prismaClientInputType.fields.filter(
-                (field) => !(field.name in publisherConfig.locallyComputedInputs)
-              )
+              (field) => !(field.name in publisherConfig.locallyComputedInputs)
+            )
             : prismaClientInputType.fields,
         },
       }
@@ -683,12 +693,12 @@ export class SchemaBuilder {
       const paginationsArgs =
         publisherConfig.pagination === true
           ? field.args.filter((a) => {
-              const argNames = this.paginationStrategy.paginationArgNames as string[]
-              return argNames.includes(a.name)
-            })
+            const argNames = this.paginationStrategy.paginationArgNames as string[]
+            return argNames.includes(a.name)
+          })
           : field.args.filter((arg) => {
-              return (publisherConfig.pagination as any)[arg.name] === true
-            })
+            return (publisherConfig.pagination as any)[arg.name] === true
+          })
 
       args.push(
         ...paginationsArgs.map((a) => {
